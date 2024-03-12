@@ -1,16 +1,18 @@
 import UIKit
 
+// MARK: - Struct
+
 fileprivate struct QuizStepViewModel {
-   let image: UIImage
-   let question: String
-   let questionNumber: String
+    let image: UIImage
+    let question: String
+    let questionNumber: String
 }
 
 
 fileprivate struct QuizResultsViewModel {
-   let title: String
-   let text: String
-   let buttonText: String
+    let title: String
+    let text: String
+    let buttonText: String
 }
 
 fileprivate struct QuizQuestion {
@@ -22,16 +24,13 @@ fileprivate struct QuizQuestion {
 
 final class MovieQuizViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        showNextQuestionOrResults()
-    }
+    // MARK: - IBOutlet
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
         let currentQuestion = questions[currentQuestionIndex]
-            let givenAnswer = true
-            
-            showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer) 
+        let givenAnswer = true
+        
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
     
@@ -46,11 +45,10 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
     
+    // MARK: - Constant and Variables
     
     private var currentQuestionIndex = 0
-    
     private var correctAnswers = 0
-    
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
@@ -94,6 +92,18 @@ final class MovieQuizViewController: UIViewController {
             correctAnswer: false)
     ]
     
+    // MARK: - Private Override Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showNextQuestionOrResults()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // MARK: - Private Methods
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         let questionStep = QuizStepViewModel(
@@ -112,8 +122,8 @@ final class MovieQuizViewController: UIViewController {
     
     private func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
-                correctAnswers += 1
-            }
+            correctAnswers += 1
+        }
         
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
@@ -126,20 +136,20 @@ final class MovieQuizViewController: UIViewController {
     
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questions.count - 1 {
-                let text = "Ваш результат: \(correctAnswers)/10" // 1
-                let viewModel = QuizResultsViewModel( // 2
-                    title: "Этот раунд окончен!",
-                    text: text,
-                    buttonText: "Сыграть ещё раз")
-                show(quiz: viewModel) // 3
-            } else {
-                currentQuestionIndex += 1
-                let nextQuestion = questions[currentQuestionIndex]
-                let viewModel = convert(model: nextQuestion)
-                
-                show(quiz: viewModel)
-            }
+            let text = "Ваш результат: \(correctAnswers)/10" // 1
+            let viewModel = QuizResultsViewModel( // 2
+                title: "Этот раунд окончен!",
+                text: text,
+                buttonText: "Сыграть ещё раз")
+            show(quiz: viewModel) // 3
+        } else {
+            currentQuestionIndex += 1
+            let nextQuestion = questions[currentQuestionIndex]
+            let viewModel = convert(model: nextQuestion)
+            
+            show(quiz: viewModel)
         }
+    }
     
     private func show(quiz result: QuizResultsViewModel) {
         let alert = UIAlertController(
