@@ -96,27 +96,28 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
             self.imageView.layer.borderWidth = 0
+            self.currentQuestionIndex += 1
             self.showNextQuestionOrResults()
         }
     }
     
     private func showNextQuestionOrResults() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-        let bestGameDate = dateFormatter.string(from: statisticService.bestGame.date)
-        let bestGameScore = "\(statisticService.bestGame.correct)/\(statisticService.bestGame.total)"
-
-        if currentQuestionIndex == questionsAmount - 1 {
+        if currentQuestionIndex >= questionsAmount {
             statisticService.store(correct: correctAnswers, total: questionsAmount)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+            let bestGameDate = dateFormatter.string(from: statisticService.bestGame.date)
+            
+            let bestGameScore = "\(statisticService.bestGame.correct)/\(statisticService.bestGame.total)"
             let bestGameText = "Рекорд: \(bestGameScore) (\(bestGameDate))"
-            let text = correctAnswers == questionsAmount ?
-            "Раунд окончен!" :
+            let text = """
+            Ваш результат: \(correctAnswers)/\(questionsAmount)
+            Количество сыгранных квизов: \(statisticService.gamesCount)
+            \(bestGameText)
+            Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%
             """
-    Ваш результат: \(correctAnswers)/\(questionsAmount)
-    Количество сыгранных квизов: \(statisticService.gamesCount)
-    \(bestGameText)
-    Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%
-    """
+            
             let alertModel = AlertModel(
                 title: "Этот раунд окончен!",
                 message: text,
@@ -127,15 +128,14 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             )
             alertPresenter?.present(alertModel: alertModel)
         } else {
-            currentQuestionIndex += 1
             questionFactory.requestNextQuestion()
         }
     }
-
+    
     private func restartQuiz() {
         currentQuestionIndex = 0
         correctAnswers = 0
         questionFactory.requestNextQuestion()
     }
-
+    
 }

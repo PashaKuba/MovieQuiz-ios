@@ -11,19 +11,19 @@ class QuestionFactory: QuestionFactoryProtocol {
     
     func requestNextQuestion() {
         guard let index = (0..<questions.count).randomElement() else {
-                delegate?.didReceiveNextQuestion(question: nil)
-                return
-            }
-
-            let question = questions[safe: index]
-            delegate?.didReceiveNextQuestion(question: question)
+            delegate?.didReceiveNextQuestion(question: nil)
+            return
+        }
+        
+        let question = questions[safe: index]
+        delegate?.didReceiveNextQuestion(question: question)
     }
     
     weak var delegate: QuestionFactoryDelegate?
     
     func setup(delegate: QuestionFactoryDelegate) {
-            self.delegate = delegate
-        }
+        self.delegate = delegate
+    }
     
     private let questions: [QuizQuestion] = [
         QuizQuestion(
@@ -67,13 +67,4 @@ class QuestionFactory: QuestionFactoryProtocol {
             text: "Рейтинг этого фильма больше чем 9?",
             correctAnswer: false)
     ]
-    
-    func requestNextQuestion() -> QuizQuestion? {
-        
-        guard let index = (0..<questions.count).randomElement() else {
-            return nil
-        }
-
-        return questions[safe: index]
-    }
 }
