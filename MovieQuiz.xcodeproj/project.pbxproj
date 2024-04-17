@@ -29,6 +29,9 @@
 		F04D067F2BA84DF300E4EF5F /* QuizStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04D067E2BA84DF300E4EF5F /* QuizStepViewModel.swift */; };
 		F04D06812BA84E0400E4EF5F /* QuizResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04D06802BA84E0400E4EF5F /* QuizResultsViewModel.swift */; };
 		F04D06832BA84E1500E4EF5F /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04D06822BA84E1500E4EF5F /* QuizQuestion.swift */; };
+		F08ED2D82BC56F2200407CA2 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08ED2D72BC56F2200407CA2 /* NetworkClient.swift */; };
+		F08ED2DA2BC56FCE00407CA2 /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08ED2D92BC56FCE00407CA2 /* MostPopularMovies.swift */; };
+		F08ED2DC2BC5701700407CA2 /* MoviesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08ED2DB2BC5701700407CA2 /* MoviesLoader.swift */; };
 		F0F196352BB097C3009F3841 /* QuestionFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F196342BB097C3009F3841 /* QuestionFactoryProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,9 @@
 		F04D067E2BA84DF300E4EF5F /* QuizStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStepViewModel.swift; sourceTree = "<group>"; };
 		F04D06802BA84E0400E4EF5F /* QuizResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewModel.swift; sourceTree = "<group>"; };
 		F04D06822BA84E1500E4EF5F /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		F08ED2D72BC56F2200407CA2 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		F08ED2D92BC56FCE00407CA2 /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularMovies.swift; sourceTree = "<group>"; };
+		F08ED2DB2BC5701700407CA2 /* MoviesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesLoader.swift; sourceTree = "<group>"; };
 		F0F196342BB097C3009F3841 /* QuestionFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +86,7 @@
 				F01535132BB84F3600C54CDC /* AlertModel.swift */,
 				F01535172BB8620600C54CDC /* Movie.swift */,
 				F015351B2BB8658D00C54CDC /* GameRecord.swift */,
+				F08ED2D92BC56FCE00407CA2 /* MostPopularMovies.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -91,6 +98,8 @@
 				F0F196342BB097C3009F3841 /* QuestionFactoryProtocol.swift */,
 				F01535112BB5E19500C54CDC /* QuestionFactoryDelegate.swift */,
 				F01535192BB8650400C54CDC /* StatisticService.swift */,
+				F08ED2D72BC56F2200407CA2 /* NetworkClient.swift */,
+				F08ED2DB2BC5701700407CA2 /* MoviesLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -232,8 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F08ED2D82BC56F2200407CA2 /* NetworkClient.swift in Sources */,
 				AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */,
 				F01535162BB8505000C54CDC /* AlertPresenter.swift in Sources */,
+				F08ED2DA2BC56FCE00407CA2 /* MostPopularMovies.swift in Sources */,
 				F01535142BB84F3600C54CDC /* AlertModel.swift in Sources */,
 				AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */,
 				F0F196352BB097C3009F3841 /* QuestionFactoryProtocol.swift in Sources */,
@@ -250,6 +261,7 @@
 				F04D06812BA84E0400E4EF5F /* QuizResultsViewModel.swift in Sources */,
 				AD1ABAB42831907B00B3E448 /* SceneDelegate.swift in Sources */,
 				F01535182BB8620600C54CDC /* Movie.swift in Sources */,
+				F08ED2DC2BC5701700407CA2 /* MoviesLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
