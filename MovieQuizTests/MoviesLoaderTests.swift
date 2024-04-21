@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import MovieQuiz
 
-class MoviesLoaderTests: XCTestCase{
+final class MoviesLoaderTests: XCTestCase{
     func testSuccessLoading() throws {
         let stubNetworkClient = StubNetworkClient(emulateError: false)
         let loader = MoviesLoader(networkClient: stubNetworkClient)
