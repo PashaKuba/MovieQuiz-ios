@@ -10,6 +10,7 @@ import Foundation
 class QuestionFactory: QuestionFactoryProtocol {
     
     // MARK: - Private Properties
+    
     weak var delegate: QuestionFactoryDelegate?
     private let moviesLoader: MoviesLoading
     private var movies: [MostPopularMovie] = []
@@ -39,7 +40,7 @@ class QuestionFactory: QuestionFactoryProtocol {
             let rating = Float(movie.rating) ?? 0
             let defaultRaiting = 7
             let text = "Рейтинг этого фильма больше чем \(defaultRaiting)?"
-            let correctAnswer = rating > 7
+            let correctAnswer = Int(rating) > defaultRaiting
             
             let question = QuizQuestion(image: imageData,
                                         text: text,
@@ -47,7 +48,7 @@ class QuestionFactory: QuestionFactoryProtocol {
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.delegate?.didReceiveNextQuestion(question: question)
+                self.delegate?.didRecieveNextQuestion(question: question)
             }
         }
     }
